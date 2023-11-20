@@ -15,4 +15,4 @@ jobs:
       - name: Echo name
         shell: bash
         run: |
-          echo "Hello World, here I am, the CHILD workflow ${{ inputs.imageTag }}"
+          pwd
