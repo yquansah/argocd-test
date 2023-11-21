@@ -26,4 +26,4 @@ def replace_deployment(directory, app_name, image_tag):
 
 if __name__ == "__main__":
     args = parser.parse_args()
-    replace_deployment(args.filename, args.app_name, args.image_tag)
+    replace_deployment(args.directory, args.app_name, args.image_tag)
