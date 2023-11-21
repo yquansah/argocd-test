@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-app
   labels:
     app: nginx-app
+  name: nginx-app
 spec:
   replicas: 2
   selector:
@@ -15,14 +15,14 @@ spec:
         app: nginx-app
     spec:
       containers:
-      - name: nginx-app
-        image: nginx:latest
+      - image: hello-world:latest
+        name: nginx-app
         ports:
         - containerPort: 80
         resources:
-          requests:
-            memory: "256Mi"
-            cpu: "250m"
           limits:
-            memory: "1024Mi"
-            cpu: "500m"
+            cpu: 500m
+            memory: 1024Mi
+          requests:
+            cpu: 250m
+            memory: 256Mi
