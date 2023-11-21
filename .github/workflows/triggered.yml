@@ -13,7 +13,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Echo name
-        shell: bash
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.7.0
+      - name: Install Poetry dependencies
+        working-directory: scripts
         run: |
-          ls
+          poetry install
+      - name: Run script
+        working-directory: scripts
+        run: |
+          poetry run python main.py --directory=/home/runner/work/argocd-test/argocd-test --app-name=nginx-app --image-tag=hello-world:latest
