@@ -32,6 +32,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
+          token: ${{ secrets.PAT }}
           commit-message: Update image for nginx-app
           title: Updating image for nginx-app
           base: main
