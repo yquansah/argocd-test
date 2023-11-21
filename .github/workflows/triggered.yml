@@ -7,6 +7,10 @@ on:
         type: string
         required: true
         description: Tag of the image for updating
+      appName:
+        type: string
+        required: true
+        description: Name of the application receiving updates to their deployment spec
 
 jobs:
   trigger_workflow:
@@ -28,7 +32,7 @@ jobs:
       - name: Run script
         working-directory: scripts
         run: |
-          poetry run python main.py --directory=/home/runner/work/argocd-test/argocd-test --app-name=nginx-app --image-tag=hello-world:latest
+          poetry run python main.py --directory=$GITHUB_WORKSPACE --app-name=${{ github.events.inputs.appName }} --image-tag=${{ github.events.inputs.imageTag }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
